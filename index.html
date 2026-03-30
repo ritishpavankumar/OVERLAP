@@ -21,11 +21,14 @@
       --primary: #6366f1;
       --primary-hover: #4f46e5;
       --accent: #10b981;
+      --accent-light: #d1fae5;
       --text-primary: #0f172a;
       --text-secondary: #64748b;
       --border: #e2e8f0;
       --overlap-bg: #dbeafe;
       --overlap-border: #3b82f6;
+      --suggestion-bg: #fef3c7;
+      --suggestion-border: #f59e0b;
       --error: #ef4444;
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
       --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
@@ -97,7 +100,6 @@
       }
     }
 
-    /* Header */
     .header {
       text-align: center;
       margin-bottom: 48px;
@@ -134,7 +136,42 @@
       }
     }
 
-    /* Sections */
+    .topic-section {
+      margin-bottom: 32px;
+      animation: fadeInUp 0.5s ease-out 0.1s both;
+    }
+
+    .topic-input-wrapper {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topic-input-wrapper svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    .topic-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .topic-input::placeholder {
+      color: var(--text-secondary);
+    }
+
     .section {
       margin-bottom: 40px;
     }
@@ -148,7 +185,6 @@
       margin-bottom: 16px;
     }
 
-    /* Participants Grid */
     .participants-grid {
       display: grid;
       gap: 20px;
@@ -160,7 +196,6 @@
       }
     }
 
-    /* Participant Card */
     .participant-card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -228,10 +263,9 @@
       height: 18px;
     }
 
-    /* Time Slots */
     .slots-container {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 8px;
       margin-bottom: 12px;
       min-height: 36px;
@@ -240,16 +274,28 @@
     .slot-chip {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 6px 10px;
-      font-family: 'JetBrains Mono', monospace;
+      padding: 6px 10px 6px 14px;
       font-size: 0.8125rem;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .slot-chip .date-badge {
+      background: var(--primary);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.75rem;
+    }
+
+    .slot-chip .time-range {
+      font-family: 'JetBrains Mono', monospace;
       font-weight: 500;
       color: var(--text-primary);
-      animation: fadeIn 0.2s ease-out;
     }
 
     .slot-chip .remove-slot {
@@ -263,7 +309,6 @@
       align-items: center;
       justify-content: center;
       transition: color 0.15s, background 0.15s;
-      margin-left: 2px;
     }
 
     .slot-chip .remove-slot:hover {
@@ -283,7 +328,6 @@
       padding: 8px 0;
     }
 
-    /* Add Slot Button */
     .add-slot-btn {
       display: inline-flex;
       align-items: center;
@@ -310,7 +354,6 @@
       height: 16px;
     }
 
-    /* Slot Form */
     .slot-form {
       background: var(--bg);
       border-radius: var(--radius-sm);
@@ -349,6 +392,10 @@
       background: var(--surface);
       color: var(--text-primary);
       transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group input[type="text"] {
+      font-family: 'Inter', system-ui, sans-serif;
     }
 
     .form-group input:focus {
@@ -405,7 +452,15 @@
       color: var(--text-primary);
     }
 
-    /* Add Participant Card */
+    .btn-success {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #059669;
+    }
+
     .add-participant-card {
       background: transparent;
       border: 2px dashed var(--border);
@@ -437,7 +492,6 @@
       font-weight: 500;
     }
 
-    /* New Participant Form */
     .new-participant-form {
       background: var(--surface);
       border-radius: var(--radius);
@@ -468,11 +522,27 @@
       box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     }
 
+    .new-participant-form input[type="date"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      background: var(--surface);
+      color: var(--text-primary);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .new-participant-form input[type="date"]:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
     .new-participant-form .form-actions {
       margin-top: 20px;
     }
 
-    /* Results Section */
     .results-card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -486,6 +556,8 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .results-header h2 {
@@ -502,6 +574,12 @@
       color: var(--accent);
     }
 
+    .results-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .participant-count {
       font-size: 0.875rem;
       color: var(--text-secondary);
@@ -510,10 +588,120 @@
       border-radius: 20px;
     }
 
+    .export-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--text-primary);
+      color: white;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .export-btn:hover {
+      background: #1e293b;
+    }
+
+    .export-btn:active {
+      transform: scale(0.98);
+    }
+
+    .export-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .export-btn.success {
+      background: var(--accent);
+    }
+
+    .suggested-slot {
+      background: linear-gradient(135deg, var(--suggestion-bg) 0%, #fde68a 100%);
+      border: 2px solid var(--suggestion-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.4s ease-out;
+    }
+
+    .suggested-slot.perfect {
+      background: linear-gradient(135deg, var(--accent-light) 0%, #a7f3d0 100%);
+      border-color: var(--accent);
+    }
+
+    .suggested-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #92400e;
+    }
+
+    .suggested-slot.perfect .suggested-header {
+      color: #065f46;
+    }
+
+    .suggested-header svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .suggested-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .suggested-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .suggested-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .suggested-meta svg {
+      width: 14px;
+      height: 14px;
+    }
+
     .overlap-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
+    }
+
+    .overlap-date-group {
+      margin-bottom: 8px;
+    }
+
+    .overlap-date-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      margin-top: 16px;
+    }
+
+    .overlap-date-label:first-child {
+      margin-top: 0;
     }
 
     .overlap-item {
@@ -529,7 +717,7 @@
     }
 
     .overlap-item.perfect {
-      background: #d1fae5;
+      background: var(--accent-light);
       border-color: var(--accent);
     }
 
@@ -567,6 +755,20 @@
       height: 14px;
     }
 
+    .overlap-duration {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      background: rgba(0,0,0,0.05);
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+    }
+
+    .overlap-item.perfect .overlap-duration {
+      background: rgba(16, 185, 129, 0.2);
+      color: #065f46;
+    }
+
     .overlap-bar {
       width: 100%;
       height: 6px;
@@ -591,7 +793,6 @@
       background: var(--accent);
     }
 
-    /* Empty States */
     .empty-state {
       text-align: center;
       padding: 48px 24px;
@@ -629,7 +830,6 @@
       opacity: 0.4;
     }
 
-    /* Footer */
     .footer {
       text-align: center;
       padding: 24px;
@@ -643,7 +843,37 @@
       gap: 4px;
     }
 
-    /* Animations */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-primary);
+      color: white;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .toast svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -660,7 +890,6 @@
       }
     }
 
-    /* Hidden */
     .hidden {
       display: none !important;
     }
@@ -679,10 +908,18 @@
       <p>Find common time for everyone</p>
     </header>
 
+    <section class="topic-section">
+      <div class="topic-input-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <input type="text" class="topic-input" id="topic-input" placeholder="Meeting topic (optional) - e.g., Weekly sync, Project kickoff, Team debate...">
+      </div>
+    </section>
+
     <section class="section" id="participants-section">
       <h2 class="section-title">Participants</h2>
       <div class="participants-grid" id="participants-grid">
-        <!-- Participant cards will be rendered here -->
         <div class="add-participant-card" id="add-participant-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
@@ -707,6 +944,7 @@
           <p>Add participants and their available times to find overlaps</p>
         </div>
         <div id="results-content" class="hidden">
+          <div id="suggested-slot-container"></div>
           <div class="results-header">
             <h2>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -714,125 +952,196 @@
               </svg>
               Available Times
             </h2>
-            <span class="participant-count" id="participant-count">0 participants</span>
+            <div class="results-meta">
+              <span class="participant-count" id="participant-count">0 participants</span>
+              <button class="export-btn" id="export-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Export
+              </button>
+            </div>
           </div>
-          <div class="overlap-list" id="overlap-list">
-            <!-- Overlap items will be rendered here -->
-          </div>
+          <div class="overlap-list" id="overlap-list"></div>
         </div>
       </div>
     </section>
   </div>
 
+  <div class="toast" id="toast">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
   <footer class="footer">
-    <span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-        <path d="M12 17h.01"/>
-      </svg>
-      Enter times in 24-hour format (e.g., 09:00 - 17:00)
-    </span>
+    Built by Ritish &bull; 2026
   </footer>
 
   <script>
-    // State
     const state = {
+      topic: '',
       participants: [],
       nextId: 1
     };
 
-    // DOM Elements
     const participantsGrid = document.getElementById('participants-grid');
     const addParticipantBtn = document.getElementById('add-participant-btn');
     const resultsEmpty = document.getElementById('results-empty');
     const resultsContent = document.getElementById('results-content');
     const participantCount = document.getElementById('participant-count');
     const overlapList = document.getElementById('overlap-list');
+    const suggestedContainer = document.getElementById('suggested-slot-container');
+    const exportBtn = document.getElementById('export-btn');
+    const topicInput = document.getElementById('topic-input');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
 
-    // Icons
     const icons = {
       x: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
       plus: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
       check: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+      star: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+      zap: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+      clock: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
       users: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
     };
 
-    // Generate unique ID
     function generateId() {
       return `id_${state.nextId++}`;
     }
 
-    // Parse time string to minutes
     function parseTime(timeStr) {
       const [hours, minutes] = timeStr.split(':').map(Number);
       return hours * 60 + minutes;
     }
 
-    // Format minutes to time string
     function formatTime(minutes) {
       const hours = Math.floor(minutes / 60);
       const mins = minutes % 60;
       return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
     }
 
-    // Time range intersection
-    function rangesOverlap(start1, end1, start2, end2) {
-      return Math.max(start1, start2) < Math.min(end1, end2);
+    function formatDuration(minutes) {
+      if (minutes < 60) return `${minutes}m`;
+      const hours = Math.floor(minutes / 60);
+      const mins = minutes % 60;
+      return mins > 0 ? `${hours}h ${mins}m` : `${hours}h`;
     }
 
-    // Find overlaps
+    function formatDate(dateStr) {
+      const date = new Date(dateStr + 'T00:00:00');
+      return date.toLocaleDateString('en-US', { 
+        weekday: 'short', 
+        month: 'short', 
+        day: 'numeric' 
+      });
+    }
+
+    function formatDateFull(dateStr) {
+      const date = new Date(dateStr + 'T00:00:00');
+      return date.toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        year: 'numeric',
+        month: 'long', 
+        day: 'numeric' 
+      });
+    }
+
+    function getTodayDate() {
+      return new Date().toISOString().split('T')[0];
+    }
+
     function findOverlaps() {
       const participantsWithSlots = state.participants.filter(p => p.slots.length > 0);
-      if (participantsWithSlots.length < 2) return [];
+      if (participantsWithSlots.length < 2) return {};
 
-      const allSlots = participantsWithSlots.flatMap(p => p.slots.map(s => ({
-        start: parseTime(s.start),
-        end: parseTime(s.end),
-        participantId: p.id
-      })));
-
-      const boundaries = [...new Set(allSlots.flatMap(s => [s.start, s.end]))].sort((a, b) => a - b);
-      const overlaps = [];
-
-      for (let i = 0; i < boundaries.length - 1; i++) {
-        const segmentStart = boundaries[i];
-        const segmentEnd = boundaries[i + 1];
-        
-        const availableCount = participantsWithSlots.filter(p => 
-          p.slots.some(s => {
-            const start = parseTime(s.start);
-            const end = parseTime(s.end);
-            return start <= segmentStart && end >= segmentEnd;
-          })
-        ).length;
-
-        if (availableCount >= 2) {
-          overlaps.push({
-            start: segmentStart,
-            end: segmentEnd,
-            count: availableCount,
-            total: participantsWithSlots.length,
-            isPerfect: availableCount === participantsWithSlots.length
+      const slotsByDate = {};
+      participantsWithSlots.forEach(p => {
+        p.slots.forEach(slot => {
+          if (!slotsByDate[slot.date]) slotsByDate[slot.date] = [];
+          slotsByDate[slot.date].push({
+            start: parseTime(slot.start),
+            end: parseTime(slot.end),
+            participantId: p.id
           });
-        }
-      }
+        });
+      });
 
-      // Merge adjacent overlaps
-      const merged = [];
-      for (const overlap of overlaps) {
-        const last = merged[merged.length - 1];
-        if (last && last.end === overlap.start && last.count === overlap.count) {
-          last.end = overlap.end;
-        } else {
-          merged.push({ ...overlap });
-        }
-      }
+      const allOverlaps = {};
 
-      return merged;
+      Object.keys(slotsByDate).forEach(date => {
+        const slots = slotsByDate[date];
+        const boundaries = [...new Set(slots.flatMap(s => [s.start, s.end]))].sort((a, b) => a - b);
+        const overlaps = [];
+
+        for (let i = 0; i < boundaries.length - 1; i++) {
+          const segmentStart = boundaries[i];
+          const segmentEnd = boundaries[i + 1];
+          
+          const availableCount = participantsWithSlots.filter(p => 
+            p.slots.some(s => s.date === date && {
+              start: parseTime(s.start),
+              end: parseTime(s.end)
+            } && 
+            parseTime(s.start) <= segmentStart && 
+            parseTime(s.end) >= segmentEnd)
+          ).length;
+
+          if (availableCount >= 2) {
+            overlaps.push({
+              date,
+              start: segmentStart,
+              end: segmentEnd,
+              count: availableCount,
+              total: participantsWithSlots.length,
+              isPerfect: availableCount === participantsWithSlots.length
+            });
+          }
+        }
+
+        const merged = [];
+        for (const overlap of overlaps) {
+          const last = merged[merged.length - 1];
+          if (last && last.end === overlap.start && last.count === overlap.count) {
+            last.end = overlap.end;
+          } else {
+            merged.push({ ...overlap });
+          }
+        }
+
+        if (merged.length > 0) {
+          allOverlaps[date] = merged;
+        }
+      });
+
+      return allOverlaps;
     }
 
-    // Render participant card
+    function getBestSlot(overlaps) {
+      const allSlots = [];
+      Object.values(overlaps).forEach(dateOverlaps => {
+        dateOverlaps.forEach(o => {
+          allSlots.push(o);
+        });
+      });
+
+      if (allSlots.length === 0) return null;
+
+      allSlots.sort((a, b) => {
+        if (a.isPerfect !== b.isPerfect) return b.isPerfect - a.isPerfect;
+        const durationA = a.end - a.start;
+        const durationB = b.end - b.start;
+        if (durationB !== durationA) return durationB - durationA;
+        return b.count - a.count;
+      });
+
+      return allSlots[0];
+    }
+
     function renderParticipantCard(participant) {
       const card = document.createElement('div');
       card.className = 'participant-card';
@@ -850,7 +1159,8 @@
             ? '<span class="empty-slots">No time slots added</span>' 
             : participant.slots.map(slot => `
                 <span class="slot-chip">
-                  ${escapeHtml(slot.start)} - ${escapeHtml(slot.end)}
+                  <span class="date-badge">${formatDate(slot.date)}</span>
+                  <span class="time-range">${escapeHtml(slot.start)} - ${escapeHtml(slot.end)}</span>
                   <button class="remove-slot" data-slot-id="${slot.id}">
                     ${icons.x}
                   </button>
@@ -864,7 +1174,6 @@
         </button>
       `;
 
-      // Event listeners
       const nameInput = card.querySelector('.participant-name');
       nameInput.addEventListener('change', (e) => {
         participant.name = e.target.value.trim() || 'Unnamed';
@@ -894,7 +1203,6 @@
       return card;
     }
 
-    // Show slot form
     function showSlotForm(card, participant) {
       const existingForm = card.querySelector('.slot-form');
       if (existingForm) {
@@ -906,6 +1214,10 @@
       form.className = 'slot-form';
       form.innerHTML = `
         <div class="slot-form-row">
+          <div class="form-group" style="min-width: 130px;">
+            <label>Date</label>
+            <input type="date" class="slot-date" value="${getTodayDate()}">
+          </div>
           <div class="form-group">
             <label>From</label>
             <input type="time" class="start-time" value="09:00" step="900">
@@ -922,19 +1234,21 @@
       `;
 
       const slotsContainer = card.querySelector('.slots-container');
-      const addBtn = card.querySelector('.add-slot-btn');
       slotsContainer.after(form);
 
+      const dateInput = form.querySelector('.slot-date');
       const startInput = form.querySelector('.start-time');
       const endInput = form.querySelector('.end-time');
 
       form.querySelector('.add-slot-confirm').addEventListener('click', () => {
+        const date = dateInput.value;
         const start = startInput.value;
         const end = endInput.value;
 
-        if (!start || !end) {
-          startInput.classList.add('error');
-          endInput.classList.add('error');
+        if (!date || !start || !end) {
+          if (!date) dateInput.classList.add('error');
+          if (!start) startInput.classList.add('error');
+          if (!end) endInput.classList.add('error');
           return;
         }
 
@@ -948,6 +1262,7 @@
 
         participant.slots.push({
           id: generateId(),
+          date,
           start,
           end
         });
@@ -961,20 +1276,17 @@
         form.remove();
       });
 
-      startInput.addEventListener('input', () => {
-        startInput.classList.remove('error');
-        endInput.classList.remove('error');
+      [dateInput, startInput, endInput].forEach(input => {
+        input.addEventListener('input', () => {
+          dateInput.classList.remove('error');
+          startInput.classList.remove('error');
+          endInput.classList.remove('error');
+        });
       });
 
-      endInput.addEventListener('input', () => {
-        startInput.classList.remove('error');
-        endInput.classList.remove('error');
-      });
-
-      startInput.focus();
+      dateInput.focus();
     }
 
-    // Show new participant form
     function showNewParticipantForm() {
       const existingForm = document.querySelector('.new-participant-form');
       if (existingForm) {
@@ -986,7 +1298,12 @@
       form.className = 'new-participant-form';
       form.innerHTML = `
         <div class="form-group">
+          <label>Participant Name</label>
           <input type="text" placeholder="Enter participant name" class="participant-name-input" autofocus>
+        </div>
+        <div class="form-group">
+          <label>Initial Date (optional)</label>
+          <input type="date" class="participant-date-input" value="${getTodayDate()}">
         </div>
         <div class="form-actions">
           <button class="btn btn-primary add-participant-confirm">Add</button>
@@ -997,6 +1314,7 @@
       addParticipantBtn.after(form);
 
       const nameInput = form.querySelector('.participant-name-input');
+      const dateInput = form.querySelector('.participant-date-input');
 
       form.querySelector('.add-participant-confirm').addEventListener('click', () => {
         const name = nameInput.value.trim();
@@ -1005,12 +1323,22 @@
           return;
         }
 
-        state.participants.push({
+        const participant = {
           id: generateId(),
           name,
           slots: []
-        });
+        };
 
+        if (dateInput.value) {
+          participant.slots.push({
+            id: generateId(),
+            date: dateInput.value,
+            start: '09:00',
+            end: '17:00'
+          });
+        }
+
+        state.participants.push(participant);
         form.remove();
         renderParticipants();
         renderResults();
@@ -1031,7 +1359,6 @@
       nameInput.focus();
     }
 
-    // Render participants
     function renderParticipants() {
       const cards = participantsGrid.querySelectorAll('.participant-card');
       cards.forEach(card => card.remove());
@@ -1042,7 +1369,34 @@
       });
     }
 
-    // Render results
+    function renderSuggestedSlot(bestSlot) {
+      if (!bestSlot) {
+        suggestedContainer.innerHTML = '';
+        return;
+      }
+
+      const duration = bestSlot.end - bestSlot.start;
+      const icon = bestSlot.isPerfect ? icons.star : icons.zap;
+      const label = bestSlot.isPerfect ? 'Best Slot' : 'Best Available';
+      const className = bestSlot.isPerfect ? 'perfect' : '';
+
+      suggestedContainer.innerHTML = `
+        <div class="suggested-slot ${className}">
+          <div class="suggested-header">
+            ${icon}
+            ${label}
+          </div>
+          <div class="suggested-time">
+            ${formatDateFull(bestSlot.date)}, ${formatTime(bestSlot.start)} - ${formatTime(bestSlot.end)}
+          </div>
+          <div class="suggested-meta">
+            <span>${icons.clock} ${formatDuration(duration)}</span>
+            <span>${icons.users} ${bestSlot.count} of ${bestSlot.total} available</span>
+          </div>
+        </div>
+      `;
+    }
+
     function renderResults() {
       const participantsWithSlots = state.participants.filter(p => p.slots.length > 0);
       const totalParticipants = participantsWithSlots.length;
@@ -1050,6 +1404,7 @@
       if (totalParticipants === 0) {
         resultsEmpty.classList.remove('hidden');
         resultsContent.classList.add('hidden');
+        suggestedContainer.innerHTML = '';
         return;
       }
 
@@ -1059,9 +1414,13 @@
       participantCount.textContent = `${totalParticipants} participant${totalParticipants !== 1 ? 's' : ''}`;
 
       const overlaps = findOverlaps();
+      const bestSlot = getBestSlot(overlaps);
+      
+      renderSuggestedSlot(bestSlot);
+
       overlapList.innerHTML = '';
 
-      if (overlaps.length === 0) {
+      if (Object.keys(overlaps).length === 0) {
         overlapList.innerHTML = `
           <div class="no-overlaps">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1069,47 +1428,150 @@
               <line x1="12" y1="8" x2="12" y2="12"/>
               <line x1="12" y1="16" x2="12.01" y2="16"/>
             </svg>
-            <p>No common time slots found</p>
+            <p>No common time slots found on matching dates</p>
           </div>
         `;
         return;
       }
 
-      overlaps.forEach((overlap, index) => {
-        const item = document.createElement('div');
-        item.className = `overlap-item${overlap.isPerfect ? ' perfect' : ''}`;
-        item.style.animationDelay = `${index * 50}ms`;
+      const sortedDates = Object.keys(overlaps).sort();
 
-        const percentage = (overlap.count / overlap.total) * 100;
+      sortedDates.forEach(date => {
+        const dateGroup = document.createElement('div');
+        dateGroup.className = 'overlap-date-group';
+        dateGroup.innerHTML = `<div class="overlap-date-label">${formatDateFull(date)}</div>`;
 
-        item.innerHTML = `
-          <div class="overlap-time">${formatTime(overlap.start)} - ${formatTime(overlap.end)}</div>
-          <div class="overlap-info">
-            <div class="overlap-badge">
-              ${overlap.isPerfect ? icons.check : ''}
-              ${overlap.count} of ${overlap.total} available
+        overlaps[date].forEach((overlap, index) => {
+          const item = document.createElement('div');
+          item.className = `overlap-item${overlap.isPerfect ? ' perfect' : ''}`;
+          item.style.animationDelay = `${index * 50}ms`;
+
+          const percentage = (overlap.count / overlap.total) * 100;
+          const duration = overlap.end - overlap.start;
+
+          item.innerHTML = `
+            <div class="overlap-time">${formatTime(overlap.start)} - ${formatTime(overlap.end)}</div>
+            <div class="overlap-info">
+              <div class="overlap-badge">
+                ${overlap.isPerfect ? icons.check : ''}
+                ${overlap.count} of ${overlap.total} available
+                <span class="overlap-duration">${formatDuration(duration)}</span>
+              </div>
+              <div class="overlap-bar">
+                <div class="overlap-bar-fill" style="width: ${percentage}%"></div>
+              </div>
             </div>
-            <div class="overlap-bar">
-              <div class="overlap-bar-fill" style="width: ${percentage}%"></div>
-            </div>
-          </div>
-        `;
+          `;
 
-        overlapList.appendChild(item);
+          dateGroup.appendChild(item);
+        });
+
+        overlapList.appendChild(dateGroup);
       });
     }
 
-    // Escape HTML
+    function exportResults() {
+      const participantsWithSlots = state.participants.filter(p => p.slots.length > 0);
+      const overlaps = findOverlaps();
+      const bestSlot = getBestSlot(overlaps);
+      const topic = state.topic.trim();
+
+      let text = '=== MEETING SCHEDULE ===\n\n';
+
+      if (topic) {
+        text += `Topic: ${topic}\n\n`;
+      }
+
+      if (bestSlot) {
+        const duration = bestSlot.end - bestSlot.start;
+        text += `RECOMMENDED SLOT:\n`;
+        text += `${formatDateFull(bestSlot.date)}\n`;
+        text += `${formatTime(bestSlot.start)} - ${formatTime(bestSlot.end)} (${formatDuration(duration)})\n`;
+        text += `${bestSlot.count} of ${bestSlot.total} participants available\n`;
+        if (bestSlot.isPerfect) text += 'All participants available!\n';
+        text += '\n';
+      }
+
+      if (Object.keys(overlaps).length > 0) {
+        text += 'ALL AVAILABLE SLOTS:\n';
+        const sortedDates = Object.keys(overlaps).sort();
+        
+        sortedDates.forEach(date => {
+          text += `\n${formatDateFull(date)}:\n`;
+          overlaps[date].forEach(overlap => {
+            const duration = overlap.end - overlap.start;
+            text += `  ${formatTime(overlap.start)} - ${formatTime(overlap.end)} (${formatDuration(duration)}) - ${overlap.count}/${overlap.total}`;
+            if (overlap.isPerfect) text += ' ✓';
+            text += '\n';
+          });
+        });
+      }
+
+      text += '\nPARTICIPANTS:\n';
+      state.participants.forEach(p => {
+        if (p.slots.length === 0) {
+          text += `- ${p.name}: No availability set\n`;
+        } else {
+          text += `- ${p.name}:\n`;
+          p.slots.forEach(slot => {
+            text += `    ${formatDate(slot.date)}: ${slot.start} - ${slot.end}\n`;
+          });
+        }
+      });
+
+      text += '\n' + '='.repeat(24);
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Copied to clipboard!');
+        exportBtn.classList.add('success');
+        exportBtn.innerHTML = `
+          ${icons.check}
+          Copied!
+        `;
+        setTimeout(() => {
+          exportBtn.classList.remove('success');
+          exportBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export
+          `;
+        }, 2000);
+      }).catch(() => {
+        const blob = new Blob([text], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'meeting-schedule.txt';
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('Downloaded as file');
+      });
+    }
+
+    function showToast(message) {
+      toastMessage.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
     function escapeHtml(text) {
       const div = document.createElement('div');
       div.textContent = text;
       return div.innerHTML;
     }
 
-    // Event listeners
     addParticipantBtn.addEventListener('click', showNewParticipantForm);
+    exportBtn.addEventListener('click', exportResults);
+    
+    topicInput.addEventListener('input', (e) => {
+      state.topic = e.target.value;
+    });
 
-    // Initial render
     renderParticipants();
     renderResults();
   </script>
